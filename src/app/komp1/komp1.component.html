@@ -1,0 +1,15 @@
+<p>komp1 works!</p>
+<h2>{{ kwota }}</h2>
+
+
+<form [formGroup]="naszForm" (ngSubmit)="wyslij()">
+    <label>Imie</label>
+    <input type="text" formControlName="imie"/>
+    <label>Nazwisko</label>
+    <input type="text" formControlName="nazwisko"/>
+    <button type="submit">Wyslij</button>
+  </form>
+
+  <h1>Z child: {{zmiennakomp1}}</h1>
+<app-child [imie] = "naszForm.value.imie" (nazewnatrz)="zzewnatrz($event)"></app-child>
+

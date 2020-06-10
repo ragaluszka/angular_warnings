@@ -1,0 +1,64 @@
+<app-header>
+    <p levels>Standaryzacja Tauron</p>
+    <div content>
+        <p>Lista Ostrzeżeń</p>
+    </div>
+</app-header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="cs-table table table-striped">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>name</th>
+                        <th>opis</th>
+                        <th>usuń</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let warning of warnings;" class="row-car" [routerLink]="['/listswarnings/detailwarning/', warning.id]">
+                        <td>{{warning?.id}}</td>
+                        <td>{{warning?.name}}</td>
+                        <td>{{warning?.opis}}</td>
+                        <td (click)="removeWarning(warning, $event)" >( X )</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<p class="data-header">Dadaj ostrzeżenie</p>
+<div class="data-container">
+    <form [formGroup]="warningForm">
+        <div class="row from-group">
+            <div class="col-sm-4">
+                <label>Nazwa</label>
+                <input formControlName="name" #name type="text" class="form-control" placeholder="nazwa">
+                <p class="error" *ngIf="!warningForm.get('name').valid && warningForm.get('name').dirty ">To pole jest wymagane</p>
+            </div>
+            <div class="col-sm-4">
+                <label>Opis</label>
+                <input formControlName="opis" #opis type="text" class="form-control" placeholder="opis">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <button [disabled]="warningForm.invalid" (click)="addWarning()" type="submit" class="btn btn-primary float-right"> Wyslij</button>
+                <button (click)="warningForm.reset()" type="submit" class="btn btn-primary float-right"> Wyczyść</button>
+            </div>
+
+        </div>
+    </form>
+<pre>
+    {{ warningForm.value | json}}
+</pre>
+<pre>
+    Stan validacji name:{{ warningForm.get('name').valid | json}}
+</pre>
+</div>
+
+
+

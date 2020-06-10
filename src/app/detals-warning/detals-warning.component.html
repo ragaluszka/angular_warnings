@@ -1,0 +1,56 @@
+<app-header>
+    <p levels>Standaryzacja Tauron</p>
+    <div content>
+        <p>Szczgóły Ostrzeżenia</p>
+    </div>
+</app-header>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>name</th>
+                        <th>direction</th>
+                        <th>voltage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{warning?.id}}</td>
+                        <td>{{warning?.name}}</td>
+                        <td>{{warning?.direction}}</td>
+                       
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<p class="data-header">Edytuj ostrzeżenie</p>
+<div class="data-container">
+    <form [formGroup]="warningForm">
+        <div class="row from-group">
+            <div class="col-sm-4">
+                <label>Nazwa</label>
+                <input formControlName="name" #name type="text" class="form-control" placeholder="nazwa">
+                <p class="error" *ngIf="!warningForm.get('name').valid && warningForm.get('name').dirty ">To pole jest wymagane</p>
+            </div>
+            <div class="col-sm-4">
+                <label>Opis</label>
+                <input formControlName="opis" #opis type="text" class="form-control" placeholder="opis">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <button [disabled]="warningForm.invalid" (click)="updateWarning()" type="submit" class="btn btn-primary float-right"> Wyslij</button>
+                <button (click)="warningForm.reset()" type="submit" class="btn btn-primary float-right"> Wyczyść</button>
+            </div>
+
+        </div>
+    </form>
+

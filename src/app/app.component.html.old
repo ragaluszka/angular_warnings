@@ -1,0 +1,18 @@
+
+
+  <div class="card-container">  
+    {{ zmienna }}
+    <input *ngIf="wyswietl" [(ngModel)]="zmienna" type="text"/>
+    <button [ngStyle]="{'background': 'green'}" (click) = "wyslij()" > test</button>
+
+    <div *ngFor="let osoba of osoby; let i=index">
+      <span [ngClass]="{'zielone': i == 1}">
+      {{osoba.imie}} ma {{osoba.wiek}}
+    </span>
+    <h2>{{ data | date:"short" }}</h2>
+    </div>
+    <h2>{{ kwota }}</h2>
+    <a routerLink="komp1">komp1</a>
+    <a routerLink="komp2">komp2</a>
+    <router-outlet></router-outlet>
+  </div>
